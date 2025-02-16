@@ -8,7 +8,6 @@
     android:background="@drawable/fondo"
     tools:context=".MainActivity">
 
-
     <TextView
         android:id="@+id/textView"
         android:layout_width="404dp"
@@ -62,10 +61,8 @@
 
         <Button
             android:id="@+id/n7"
-            style="@style/Widget.MaterialComponents.Button"
             android:layout_width="80dp"
             android:layout_height="80dp"
-
             android:layout_margin="4dp"
             android:backgroundTint="@color/white"
             android:elevation="4dp"
@@ -84,10 +81,8 @@
             tools:layout_editor_absoluteX="22dp"
             tools:layout_editor_absoluteY="54dp" />
 
-
         <Button
             android:id="@+id/n8"
-            style="@style/Widget.MaterialComponents.Button"
             android:layout_width="80dp"
             android:layout_height="80dp"
             android:layout_margin="8dp"
@@ -110,7 +105,6 @@
 
         <Button
             android:id="@+id/n9"
-            style="@style/Widget.MaterialComponents.Button"
             android:layout_width="80dp"
             android:layout_height="80dp"
             android:layout_row="0"
@@ -148,10 +142,8 @@
             app:strokeColor="@color/black"
             app:strokeWidth="2sp" />
 
-
         <Button
             android:id="@+id/n4"
-            style="@style/Widget.MaterialComponents.Button"
             android:layout_width="80dp"
             android:layout_height="80dp"
             android:layout_margin="8dp"
@@ -174,7 +166,6 @@
 
         <Button
             android:id="@+id/n5"
-            style="@style/Widget.MaterialComponents.Button"
             android:layout_width="80dp"
             android:layout_height="80dp"
             android:layout_margin="8dp"
@@ -197,7 +188,6 @@
 
         <Button
             android:id="@+id/n6"
-            style="@style/Widget.MaterialComponents.Button"
             android:layout_width="80dp"
             android:layout_height="80dp"
             android:layout_margin="8dp"
@@ -232,11 +222,10 @@
             app:cornerRadius="4dp"
             app:rippleColor="@color/teal"
             app:strokeColor="@color/black"
-            app:strokeWidth="2sp" />/>
+            app:strokeWidth="2sp" />
 
         <Button
             android:id="@+id/n1"
-            style="@style/Widget.MaterialComponents.Button"
             android:layout_width="80dp"
             android:layout_height="80dp"
             android:layout_margin="8dp"
@@ -259,7 +248,6 @@
 
         <Button
             android:id="@+id/n2"
-            style="@style/Widget.MaterialComponents.Button"
             android:layout_width="80dp"
             android:layout_height="80dp"
             android:layout_margin="8dp"
@@ -282,7 +270,6 @@
 
         <Button
             android:id="@+id/n3"
-            style="@style/Widget.MaterialComponents.Button"
             android:layout_width="80dp"
             android:layout_height="80dp"
             android:layout_margin="8dp"
@@ -321,7 +308,6 @@
 
         <Button
             android:id="@+id/n0"
-            style="@style/Widget.MaterialComponents.Button"
             android:layout_width="80dp"
             android:layout_height="80dp"
             android:layout_margin="8dp"
@@ -358,22 +344,17 @@
 
         <Button
             android:id="@+id/igu"
-
             android:layout_width="87dp"
             android:layout_height="87dp"
-            android:width="22dp"
-            android:backgroundTint="@color/magenta"
-            android:color="@color/verde"
+            android:backgroundTint="@color/naranja"
             android:fontFamily="@font/calculadora"
             android:text="="
             android:textColor="@color/black"
             android:textSize="34sp"
             android:textStyle="bold"
             app:rippleColor="@color/gris"
-            app:strokeColor="@color/verde"
-            app:strokeWidth="2sp"
-            tools:layout_editor_absoluteX="22dp"
-            tools:layout_editor_absoluteY="54dp" />
+            app:strokeColor="@color/rojo"
+            app:strokeWidth="2sp" />
 
         <Button
             android:id="@+id/sum"
@@ -389,8 +370,5 @@
             app:rippleColor="@color/teal"
             app:strokeColor="@color/black"
             app:strokeWidth="2sp" />
-
-
     </GridLayout>
-
 </androidx.constraintlayout.widget.ConstraintLayout>
