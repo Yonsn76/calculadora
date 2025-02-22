@@ -142,13 +142,13 @@ public class MainActivity extends AppCompatActivity {
                 case "*":
                     result = firstOperand * secondOperand;
                     break;
-                case "/":
+                case "÷":
                     //si es diferente a 0, se realiza la operación normalmente
                     if (secondOperand != 0) {
                         result = firstOperand / secondOperand; 
                         //pero si a alguien se le occurre dividir por 0 le mostrara error 
                     } else {
-                        mostResultado.setText("Error");
+                        mostResultado.setText("Error: No se puede dividir entre 0");
                         validOperation = false;
                         currentInput.setLength(0);
                         operator = null;

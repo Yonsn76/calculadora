@@ -133,7 +133,7 @@
             android:layout_height="70dp"
             android:backgroundTint="@color/cian"
             android:fontFamily="@font/calculadora"
-            android:text="/"
+            android:text="÷"
             android:textColor="@color/black"
             android:textSize="34sp"
             android:textStyle="bold"
