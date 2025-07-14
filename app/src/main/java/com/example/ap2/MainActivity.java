@@ -37,7 +37,7 @@ public class MainActivity extends AppCompatActivity {
         currentInput = new StringBuilder();
         isNewNumber = true;
         hasResult = false;
-        mostResultado.setText("0");
+        mostResultado.setText(getString(R.string.display_zero));
 
 
      //--CONFIGURACION PARA LOS BOTONES
@@ -111,7 +111,7 @@ public class MainActivity extends AppCompatActivity {
                 try {
                     firstOperand = Double.parseDouble(currentInput.toString());
                 } catch (NumberFormatException e) {
-                    mostResultado.setText("Error: Número inválido");
+                    mostResultado.setText(getString(R.string.error_invalid_number));
                     currentInput.setLength(0);
                     operator = null;
                     firstOperand = 0;
@@ -142,7 +142,7 @@ public class MainActivity extends AppCompatActivity {
             try {
                 secondOperand = Double.parseDouble(currentInput.toString());
             } catch (NumberFormatException e) {
-                mostResultado.setText("Error: Número inválido");
+                mostResultado.setText(getString(R.string.error_invalid_number));
                 currentInput.setLength(0);
                 operator = null;
                 firstOperand = 0;
@@ -170,7 +170,7 @@ public class MainActivity extends AppCompatActivity {
                         result = firstOperand / secondOperand; 
                         //pero si a alguien se le ocurre dividir por 0 le mostrará error 
                     } else {
-                        mostResultado.setText("Error: No se puede dividir entre 0");
+                        mostResultado.setText(getString(R.string.error_division_by_zero));
                         validOperation = false;
                         currentInput.setLength(0);
                         operator = null;
@@ -197,7 +197,7 @@ public class MainActivity extends AppCompatActivity {
         currentInput.setLength(0);
         operator = null;
         firstOperand = 0;
-        mostResultado.setText("0");
+        mostResultado.setText(getString(R.string.display_zero));
         isNewNumber = true;
         hasResult = false;
     }
