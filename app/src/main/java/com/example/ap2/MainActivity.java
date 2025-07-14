@@ -11,7 +11,7 @@ import android.widget.Button;
 import android.widget.TextView;
 
 public class MainActivity extends AppCompatActivity {
-    //Creamos las varibales que vamos a usar para el calculo
+    //Creamos las variables que vamos a usar para el calculo
     private TextView mostResultado;
     private StringBuilder currentInput;
     private double firstOperand;
@@ -24,7 +24,7 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        // pal barra de tareas sea transparente
+        // Para que la barra de tareas sea transparente
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
             Window window = getWindow();
             window.addFlags(WindowManager.LayoutParams.FLAG_DRAWS_SYSTEM_BAR_BACKGROUNDS);
@@ -37,10 +37,10 @@ public class MainActivity extends AppCompatActivity {
         currentInput = new StringBuilder();
         isNewNumber = true;
         hasResult = false;
-        mostResultado.setText("0");
+        mostResultado.setText(getString(R.string.display_zero));
 
 
-     //--CONFUIGURACION PARA LOS BOTONES
+     //--CONFIGURACION PARA LOS BOTONES
         //  para botones numéricos
         setNumberButtonListeners();
 
@@ -58,7 +58,7 @@ public class MainActivity extends AppCompatActivity {
 
     //--CONFIGURAMOS LOS BOTONES NUMERICOS
     private void setNumberButtonListeners() {
-        // Creamos un arreglos con todos los id de los botones numericos
+        // Creamos un arreglo con todos los id de los botones numericos
         int[] numberIds = {R.id.n0, R.id.n1, R.id.n2, R.id.n3, R.id.n4, R.id.n5, R.id.n6, R.id.n7, R.id.n8, R.id.n9};
         // Recorremos el arreglo y para cada id, le asignamos un listener
         for (int id : numberIds) {
@@ -68,7 +68,7 @@ public class MainActivity extends AppCompatActivity {
 
     //--CONFIGURAMOS LOS BOTONES DE OPERACION
     private void setOperationButtonListeners() {
-        // Creamos un arreglos con todos los id de los botones de operación
+        // Creamos un arreglo con todos los id de los botones de operación
         int[] opIds = {R.id.sum, R.id.rest, R.id.mult, R.id.div};
         // Recorremos el arreglo y para cada id, le asignamos un listener
         for (int id : opIds) {
@@ -76,11 +76,11 @@ public class MainActivity extends AppCompatActivity {
         }
     }
 
-    //configuramos el evento para los botones numericos al precionarlos
+    //configuramos el evento para los botones numéricos al presionarlos
     private void onNumberClick(View view) {
-        // Creamos un boton para que se pueda usar en el evento
+        // Creamos un botón para que se pueda usar en el evento
         Button button = (Button) view;
-        //si es un nuevo numero, se limpia el input
+        //si es un nuevo número, se limpia el input
         if (isNewNumber) {
             currentInput.setLength(0);
             isNewNumber = false;
@@ -92,9 +92,9 @@ public class MainActivity extends AppCompatActivity {
             firstOperand = 0;
             hasResult = false;
         }
-        //se agrega el numero al input
+        //se agrega el número al input
         currentInput.append(button.getText());
-        //se muestra el numero en el textview
+        //se muestra el número en el textview
         mostResultado.setText(currentInput.toString());
     }
 
@@ -108,7 +108,17 @@ public class MainActivity extends AppCompatActivity {
                 calculateResult();
 
             } else {
-                firstOperand = Double.parseDouble(currentInput.toString());
+                try {
+                    firstOperand = Double.parseDouble(currentInput.toString());
+                } catch (NumberFormatException e) {
+                    mostResultado.setText(getString(R.string.error_invalid_number));
+                    currentInput.setLength(0);
+                    operator = null;
+                    firstOperand = 0;
+                    isNewNumber = true;
+                    hasResult = false;
+                    return;
+                }
             }
 
             operator = newOperator;
@@ -128,7 +138,19 @@ public class MainActivity extends AppCompatActivity {
  //--CONFIGURAMOS EL EVENTO PARA EL BOTON IGUAL
     private void calculateResult() {
         if (operator != null && currentInput.length() > 0 && !isNewNumber) {
-            double secondOperand = Double.parseDouble(currentInput.toString());
+            double secondOperand;
+            try {
+                secondOperand = Double.parseDouble(currentInput.toString());
+            } catch (NumberFormatException e) {
+                mostResultado.setText(getString(R.string.error_invalid_number));
+                currentInput.setLength(0);
+                operator = null;
+                firstOperand = 0;
+                isNewNumber = true;
+                hasResult = false;
+                return;
+            }
+            
             double result = 0;
             boolean validOperation = true;
             // Creamos un switch para realizar cada operación
@@ -146,18 +168,19 @@ public class MainActivity extends AppCompatActivity {
                     //si es diferente a 0, se realiza la operación normalmente
                     if (secondOperand != 0) {
                         result = firstOperand / secondOperand; 
-                        //pero si a alguien se le occurre dividir por 0 le mostrara error 
+                        //pero si a alguien se le ocurre dividir por 0 le mostrará error 
                     } else {
-                        mostResultado.setText("Error: No se puede dividir entre 0");
+                        mostResultado.setText(getString(R.string.error_division_by_zero));
                         validOperation = false;
                         currentInput.setLength(0);
                         operator = null;
                         firstOperand = 0;
                         isNewNumber = true;
+                        hasResult = false;
                     }
                     break;
             }
-            //si la operación es valida, se realiza la operación y se muestra el resultado
+            //si la operación es válida, se realiza la operación y se muestra el resultado
             if (validOperation) {
                 firstOperand = result;
                 currentInput.setLength(0);
@@ -174,12 +197,12 @@ public class MainActivity extends AppCompatActivity {
         currentInput.setLength(0);
         operator = null;
         firstOperand = 0;
-        mostResultado.setText("0");
+        mostResultado.setText(getString(R.string.display_zero));
         isNewNumber = true;
         hasResult = false;
     }
 
-    //--CONFIGURAMOS EL FORMATO DE LOS NUMEROS
+    //--CONFIGURAMOS EL FORMATO DE LOS NÚMEROS
     private String formatNumber(double number) {
         if (number == (long) number) {
             return String.format("%d", (long) number);
