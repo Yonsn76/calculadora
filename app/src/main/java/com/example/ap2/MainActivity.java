@@ -108,7 +108,17 @@ public class MainActivity extends AppCompatActivity {
                 calculateResult();
 
             } else {
-                firstOperand = Double.parseDouble(currentInput.toString());
+                try {
+                    firstOperand = Double.parseDouble(currentInput.toString());
+                } catch (NumberFormatException e) {
+                    mostResultado.setText("Error: Número inválido");
+                    currentInput.setLength(0);
+                    operator = null;
+                    firstOperand = 0;
+                    isNewNumber = true;
+                    hasResult = false;
+                    return;
+                }
             }
 
             operator = newOperator;
@@ -128,7 +138,19 @@ public class MainActivity extends AppCompatActivity {
  //--CONFIGURAMOS EL EVENTO PARA EL BOTON IGUAL
     private void calculateResult() {
         if (operator != null && currentInput.length() > 0 && !isNewNumber) {
-            double secondOperand = Double.parseDouble(currentInput.toString());
+            double secondOperand;
+            try {
+                secondOperand = Double.parseDouble(currentInput.toString());
+            } catch (NumberFormatException e) {
+                mostResultado.setText("Error: Número inválido");
+                currentInput.setLength(0);
+                operator = null;
+                firstOperand = 0;
+                isNewNumber = true;
+                hasResult = false;
+                return;
+            }
+            
             double result = 0;
             boolean validOperation = true;
             // Creamos un switch para realizar cada operación
@@ -154,6 +176,7 @@ public class MainActivity extends AppCompatActivity {
                         operator = null;
                         firstOperand = 0;
                         isNewNumber = true;
+                        hasResult = false;
                     }
                     break;
             }
